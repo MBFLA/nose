@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg, #ff6b6b 0%, #ff3366 100%);
+            overflow: hidden;
+        }
+
+        .heart {
+            background-color: #ff0844;
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            position: relative;
+            transform: rotate(-45deg);
+            animation: heartBeat 1.2s ease-in-out infinite;
+            box-shadow: 0 0 40px rgba(255, 8, 68, 0.5);
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            background-color: #ff0844;
+            border-radius: 50%;
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            box-shadow: 0 0 40px rgba(255, 8, 68, 0.5);
+        }
+
+        .heart::before {
+            top: -75px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 75px;
+        }
+
+        @keyframes heartBeat {
+            0% {
+                transform: rotate(-45deg) scale(1);
+            }
+            14% {
+                transform: rotate(-45deg) scale(1.1);
+            }
+            28% {
+                transform: rotate(-45deg) scale(1);
+            }
+            42% {
+                transform: rotate(-45deg) scale(1.1);
+            }
+            70% {
+                transform: rotate(-45deg) scale(1);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 2s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+            }
+        }
+
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at center,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(255, 255, 255, 0) 70%
+            );
+            opacity: 0.3;
+            animation: glow 2s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes glow {
+            from { opacity: 0.3; }
+            to { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart"></div>
+    <div class="glow"></div>
+
+    <script>
+        for(let i = 0; i < 30; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+        }
+    </script>
+</body>
+</html>
